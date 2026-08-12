@@ -11,17 +11,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. سحب كود المشروع من GitHub
+    # 1. سحب كود المشروع من المستودع
     - uses: actions/checkout@v4
 
-    # 2. إعداد بيئة JDK 11
-    - name: set up JDK 11
+    # 2. إعداد بيئة Java 17 وتفعيل التخزين المؤقت لـ Gradle
+    - name: set up JDK 17
       uses: actions/setup-java@v4
       with:
-        java-version: '11'
+        java-version: '17' # تم تحديث الإصدار هنا ليناسب متطلبات Gradle 9.x
         distribution: 'temurin'
         cache: gradle
 
-    # 3. بناء المشروع باستخدام Gradle المثبت في البيئة مباشرة (بدون استخدام gradlew)
+    # 3. تنفيذ أمر البناء المباشر بواسطة Gradle
     - name: Build with Gradle
       run: gradle build
